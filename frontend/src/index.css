@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   MEDSIM-INSCRIPCIONES - Estilos Globales
+   ============================================================ */
+
+:root {
+  --color-bg: #030014;
+  --color-surface: #0f0a29;
+  --color-border: rgba(168, 85, 247, 0.15);
+  --color-primary: #a855f7;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* scroll-behavior: smooth; */ /* Comentado para evitar saltos inesperados durante actualizaciones en vivo */
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar personalizada ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+::-webkit-scrollbar-thumb {
+  background: #a855f7;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c084fc;
+}
+
+/* ── Componentes reutilizables ── */
+@layer components {
+
+  /* Tarjeta con glassmorphism */
+  .card-glass {
+    @apply bg-dark-800/80 backdrop-blur-sm border border-medical-500/20 rounded-xl;
+    box-shadow: 0 4px 24px rgba(168, 85, 247, 0.05), 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  /* Botón primario (azul musical) */
+  .btn-primary {
+    @apply px-6 py-3 bg-medical-600 hover:bg-medical-500 text-white font-semibold rounded-lg
+           transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  }
+
+  /* Botón de peligro (reset/detener) */
+  .btn-danger {
+    @apply px-6 py-3 bg-red-700 hover:bg-red-600 text-white font-semibold rounded-lg
+           transition-all duration-200 active:scale-95;
+  }
+
+  /* Indicador de estado en vivo */
+  .live-indicator {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .live-indicator.active {
+    @apply bg-green-500/20 text-green-400 border border-green-500/30;
+  }
+
+  .live-indicator.inactive {
+    @apply bg-slate-500/20 text-slate-400 border border-slate-500/30;
+  }
+
+  /* Badge de estado de solicitud */
+  .status-badge {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .status-badge.pendiente  { @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+  .status-badge.en-proceso { @apply bg-blue-500/20 text-blue-400 border border-blue-500/30; }
+  .status-badge.aprobada   { @apply bg-green-500/20 text-green-400 border border-green-500/30; }
+  .status-badge.rechazada  { @apply bg-red-500/20 text-red-400 border border-red-500/30; }
+
+  /* Celda de tabla */
+  .table-row-hover {
+    @apply hover:bg-medical-900/30 transition-colors duration-150;
+  }
+
+  /* Fila de log */
+  .log-entry {
+    @apply font-mono text-xs px-3 py-1.5 rounded border-l-2 mb-1;
+  }
+  .log-entry.INFO    { @apply bg-blue-950/50 border-blue-500 text-blue-200; }
+  .log-entry.SUCCESS { @apply bg-green-950/50 border-green-500 text-green-200; }
+  .log-entry.WARN    { @apply bg-yellow-950/50 border-yellow-500 text-yellow-200; }
+  .log-entry.ERROR   { @apply bg-red-950/50 border-red-500 text-red-200; }
+}
+
+/* ── Animaciones especiales ── */
+
+/* Glow pulsante para semáforos activos */
+@keyframes semaphore-glow {
+  0%, 100% { box-shadow: 0 0 6px currentColor; }
+  50%       { box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; }
+}
+
+.semaphore-active {
+  animation: semaphore-glow 1.5s ease-in-out infinite;
+}
+
+/* Barra de progreso animada */
+@keyframes progress-fill {
+  from { width: 0%; }
+}
+
+/* Efecto de escaneo (línea que sube y baja) */
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.scan-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #a855f7, transparent);
+  animation: scan-line 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Fondo animado con grid */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Efecto de entrada para nuevas filas */
+@keyframes row-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+    background-color: rgba(168, 85, 247, 0.1);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    background-color: transparent;
+  }
+}
+
+.row-new {
+  animation: row-enter 0.4s ease-out;
+}

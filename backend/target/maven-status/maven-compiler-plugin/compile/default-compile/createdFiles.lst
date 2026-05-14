@@ -1,0 +1,16 @@
+com\ticketflow\ventas\model\SolicitudTicket.class
+com\ticketflow\ventas\concurrent\ThreadProductor.class
+com\ticketflow\ventas\model\EstadoSistema$LogEntry.class
+com\ticketflow\ventas\model\SolicitudTicket$EstadoSolicitud.class
+com\ticketflow\ventas\TicketFlowApplication.class
+com\ticketflow\ventas\model\EstadoSistema.class
+com\ticketflow\ventas\config\WebConfig.class
+com\ticketflow\ventas\service\LogService.class
+com\ticketflow\ventas\concurrent\BufferCompartido.class
+com\ticketflow\ventas\concurrent\ThreadConsumidor.class
+com\ticketflow\ventas\model\EstadoSistema$EstadoSistemaBuilder.class
+com\ticketflow\ventas\model\EstadoSistema$LogEntry$LogEntryBuilder.class
+com\ticketflow\ventas\model\SolicitudTicket$SolicitudTicketBuilder.class
+com\ticketflow\ventas\service\SimulacionService.class
+com\ticketflow\ventas\controller\VentaController.class
+com\ticketflow\ventas\service\RegistroService.class
