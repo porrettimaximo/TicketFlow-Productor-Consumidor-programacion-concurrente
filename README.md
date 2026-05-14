@@ -1,11 +1,11 @@
-# 🏥 TicketFlow
+#  TicketFlow
 
 > **Sistema de Tickets a Exámenes Clínicos con Control de Concurrencia**  
 > Implementación del patrón **Productor-Consumidor** usando **Semáforos** en Java
 
 ---
 
-## 📋 Descripción del Proyecto
+##  Descripción del Proyecto
 
 **TicketFlow** es una plataforma de venta de entradas para conciertos y eventos masivos de alta demanda (Virtual Waiting Room). Simula el proceso de compra concurrente de múltiples usuarios intentando adquirir tickets limitados simultáneamente.
 
@@ -23,7 +23,7 @@ El proyecto demuestra de forma visual e interactiva los conceptos fundamentales 
 
 ---
 
-## 🏗️ Arquitectura del Sistema
+##  Arquitectura del Sistema
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
