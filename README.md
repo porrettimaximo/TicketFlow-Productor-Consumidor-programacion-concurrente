@@ -2,6 +2,7 @@
 
 > **Sistema de Tickets a Exámenes Clínicos con Control de Concurrencia**  
 > Implementación del patrón **Productor-Consumidor** usando **Semáforos** en Java
+> Video: https://youtu.be/yBYnTCtBKV0?si=Cf7mafTTyTaVpAVt
 
 ---
 
